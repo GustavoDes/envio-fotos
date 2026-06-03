@@ -1,0 +1,483 @@
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --red:      #831D1C;
+    --red-dark: #5e1514;
+    --red-muted:#b84a49;
+    --red-soft: #fdf1f1;
+    --gold:     #fdbf03;
+    --navy:     #050c62;
+    --ink:      #1a1a1a;
+    --muted:    #6b7280;
+    --border:   #e8e4e0;
+    --bg:       #f7f5f3;
+    --white:    #ffffff;
+    --radius:   14px;
+    --shadow:   0 2px 16px rgba(131,29,28,.07);
+    --shadow-lg:0 8px 40px rgba(131,29,28,.12);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Login Screen ─────────────────────────────────────────── */
+.center-screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(131,29,28,.08) 0%, transparent 70%),
+        var(--bg);
+}
+
+.login-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 400px;
+    animation: fadeUp .5s ease both;
+}
+
+.login-logo .logo-svg {
+    width: 100px;
+    height: 100px;
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(131,29,28,.2));
+}
+
+.login-card {
+    width: 100%;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px 28px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.login-title {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: .06em;
+    line-height: 1;
+}
+
+.login-subtitle {
+    font-size: .78rem;
+    color: var(--muted);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.login-divider {
+    width: 32px;
+    height: 2px;
+    background: var(--gold);
+    margin: 18px auto;
+    border-radius: 2px;
+}
+
+.login-desc {
+    font-size: .95rem;
+    color: var(--ink);
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.input-wrap {
+    margin-bottom: 14px;
+}
+
+/* ── Inputs & Selects ─────────────────────────────────────── */
+input[type="password"],
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .95rem;
+    color: var(--ink);
+    background: var(--white);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(131,29,28,.1);
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+button {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    letter-spacing: .01em;
+}
+
+button:hover {
+    background: var(--red-dark);
+    box-shadow: 0 4px 20px rgba(131,29,28,.25);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 760px;
+    margin: auto;
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-svg-sm {
+    width: 38px;
+    height: 38px;
+}
+
+.header-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: .06em;
+    line-height: 1;
+}
+
+.header-sub {
+    font-size: .8rem;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: .02em;
+}
+
+/* ── Upload Screen Layout ─────────────────────────────────── */
+#uploadScreen { display: none; }
+
+.container {
+    max-width: 760px;
+    margin: auto;
+    padding: 32px 30px 60px;
+}
+
+/* ── Section Labels ───────────────────────────────────────── */
+.section-label {
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--red);
+    margin-bottom: 8px;
+    margin-top: 28px;
+}
+
+.section-label:first-child { margin-top: 0; }
+
+/* ── Cards ────────────────────────────────────────────────── */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 0;
+}
+
+/* ── Field Layout ─────────────────────────────────────────── */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.field:last-child { margin-bottom: 0; }
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+label {
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: .02em;
+}
+
+/* ── Radio Cards ──────────────────────────────────────────── */
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-card {
+    flex: 1;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.radio-card:has(input:checked) {
+    border-color: var(--red);
+    background: var(--red-soft);
+    color: var(--red);
+}
+
+.radio-card input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--red);
+    flex-shrink: 0;
+}
+
+/* ── Upload Zone ──────────────────────────────────────────── */
+.upload-card { padding: 0; overflow: hidden; }
+
+.upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px 32px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background .2s;
+    gap: 6px;
+}
+
+.upload-zone:hover { background: var(--red-soft); }
+
+.upload-zone input[type="file"] {
+    display: none;
+}
+
+.upload-icon {
+    color: var(--red-muted);
+    margin-bottom: 6px;
+}
+
+.upload-cta {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--ink);
+}
+
+.upload-hint {
+    font-size: .82rem;
+    color: var(--muted);
+}
+
+#contadorFotos {
+    padding: 12px 24px;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--red);
+    min-height: 0;
+    transition: all .2s;
+}
+
+#contadorFotos:empty { display: none; }
+
+/* ── Submit Button ────────────────────────────────────────── */
+#btnEnviar {
+    margin-top: 24px;
+    padding: 16px;
+    font-size: 1rem;
+}
+
+/* ── Resultado ────────────────────────────────────────────── */
+#resultado { margin-top: 16px; font-size: .9rem; }
+
+.sucesso { color: var(--red); font-weight: 600; }
+.erro    { color: #c62828;    font-weight: 500; }
+
+/* ── Errors ───────────────────────────────────────────────── */
+#loginErro {
+    color: #c62828;
+    font-size: .85rem;
+    margin-top: 10px;
+    min-height: 18px;
+}
+
+.help-text {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: .8rem;
+    line-height: 1.6;
+}
+
+/* ── Overlays ─────────────────────────────────────────────── */
+#uploadOverlay,
+#successOverlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(6px);
+    background: rgba(26,26,26,.3);
+    z-index: 9999;
+}
+
+.modal {
+    background: var(--white);
+    width: 380px;
+    max-width: 90%;
+    border-radius: 20px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    animation: popIn .25s ease both;
+}
+
+.modal h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 16px 0 8px;
+}
+
+.modal p {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* ── Spinner ──────────────────────────────────────────────── */
+.spinner {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto;
+    border: 3px solid var(--border);
+    border-top-color: var(--red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ── Progress Bar ─────────────────────────────────────────── */
+.progressBar {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 99px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+#progressFill {
+    height: 100%;
+    width: 0%;
+    background: var(--red);
+    border-radius: 99px;
+    transition: width .2s ease;
+}
+
+#progressLabel {
+    margin-top: 8px;
+    font-size: .82rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* ── Success Icon ─────────────────────────────────────────── */
+.successIcon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes fadeUp  { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+@keyframes popIn   { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:scale(1); } }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 580px) {
+    .container { padding: 20px 16px 48px; }
+    .field-row { grid-template-columns: 1fr; }
+    .header-inner { padding: 12px 16px; }
+    .login-card { padding: 28px 20px 22px; }
+    .card { padding: 18px; }
+}
