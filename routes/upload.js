@@ -5,7 +5,7 @@ const fs = require("fs");
 const {
     buscarOuCriarPastaAtividadePorUploadId,
     enviarArquivo
-} = require("../driveService");
+} = require("../services/driveService");
 
 const router = express.Router();
 
