@@ -87,7 +87,11 @@ app.listen(PORT, () => {
 });
 
 
+import cors from "cors";
+
 app.use(cors({
-    origin: "https://envio-fotos-gearpe.netlify.app/",
-    methods: ["GET", "POST"],
+  origin: [
+    "https://envio-fotos-gearpe.netlify.app/",
+    "http://localhost:5500"
+  ]
 }));
