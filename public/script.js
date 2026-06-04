@@ -13,8 +13,7 @@ successOverlay.style.display = "none";
 // ---------------------------------------------------------------------------
 // Login
 // ---------------------------------------------------------------------------
-document.getElementById("btnEntrar").addEventListener("click", () => {
-
+function tentarLogin() {
     const senha = document.getElementById("senhaLogin").value;
     const erro  = document.getElementById("loginErro");
 
@@ -25,6 +24,25 @@ document.getElementById("btnEntrar").addEventListener("click", () => {
     } else {
         erro.innerHTML = "Senha incorreta. Tente novamente.";
     }
+}
+
+document.getElementById("btnEntrar").addEventListener("click", tentarLogin);
+
+document.getElementById("senhaLogin").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") tentarLogin();
+});
+
+// Botão ver/ocultar senha
+document.getElementById("btnVerSenha").addEventListener("click", () => {
+    const input       = document.getElementById("senhaLogin");
+    const olhoAberto  = document.getElementById("iconOlhoAberto");
+    const olhoFechado = document.getElementById("iconOlhoFechado");
+    const mostrar     = input.type === "password";
+
+    input.type        = mostrar ? "text" : "password";
+    olhoAberto.style.display  = mostrar ? "none"  : "";
+    olhoFechado.style.display = mostrar ? ""      : "none";
+    input.focus();
 });
 
 // ---------------------------------------------------------------------------

@@ -104,6 +104,41 @@ body {
     margin-bottom: 14px;
 }
 
+.password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrap input {
+    padding-right: 46px; /* espaço para o botão */
+}
+
+.btn-ver-senha {
+    position: absolute;
+    right: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: color .2s, background .2s;
+}
+
+.btn-ver-senha:hover {
+    color: var(--red);
+    background: var(--red-soft);
+    transform: none;
+    box-shadow: none;
+}
+
 /* ── Inputs & Selects ─────────────────────────────────────── */
 input[type="password"],
 input[type="text"],
