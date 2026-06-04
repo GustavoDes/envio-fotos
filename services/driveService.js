@@ -96,6 +96,10 @@ async function buscarOuCriarPastaAtividade({
     return pastaAtividade;
 }
 
+async function buscarOuCriarPastaAtividadePorUploadId(data) {
+    nomeDaPasta = uploadId;
+}
+
 async function enviarArquivo(
     pastaId,
     caminhoArquivo,

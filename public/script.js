@@ -72,6 +72,8 @@ const CONCORRENCIA = 3; // quantos uploads simultâneos
 document.getElementById("uploadForm").addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    const uploadId = crypto.randomUUID();
+
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = "";
 
@@ -95,6 +97,8 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
     }
 
     function enviarArquivo(arquivo, index) {
+
+        
         return new Promise((resolve, reject) => {
             const formData = new FormData();
 
@@ -103,6 +107,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
                 if (key !== "fotos") formData.append(key, value);
             }
             formData.append("fotos", arquivo);
+            formData.append("uploadId", uploadId);
 
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "https://envio-fotos.onrender.com/api/upload");

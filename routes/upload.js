@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
+const { uploadId } = req.body;
 
 const {
     buscarOuCriarPastaAtividade,
@@ -74,7 +75,8 @@ router.post(
             }
 
             const pastaAtividade =
-                await buscarOuCriarPastaAtividade({
+                await buscarOuCriarPastaAtividadePorUploadId({
+                    uploadId,
                     ramo,
                     subunidade,
                     tipo,
