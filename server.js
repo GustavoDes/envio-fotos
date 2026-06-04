@@ -87,8 +87,6 @@ app.listen(PORT, () => {
 });
 
 
-const cors = require("cors");
-
 app.use(cors({
   origin: [
     "https://envio-fotos-gearpe.netlify.app/",
