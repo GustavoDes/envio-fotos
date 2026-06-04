@@ -87,7 +87,7 @@ app.listen(PORT, () => {
 });
 
 
-import cors from "cors";
+const cors = require("cors");
 
 app.use(cors({
   origin: [
