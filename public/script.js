@@ -105,7 +105,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (event) =
             formData.append("fotos", arquivo);
 
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/api/upload");
+            xhr.open("POST", "https://envio-fotos.onrender.com");
 
             xhr.upload.onprogress = (e) => {
                 if (e.lengthComputable) atualizarProgresso(index, e.loaded);

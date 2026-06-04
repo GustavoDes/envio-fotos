@@ -85,3 +85,10 @@ app.get(
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+const cors = require("cors");
+
+app.use(cors({
+    origin: "https://envio-fotos-gearpe.netlify.app/",
+    methods: ["GET", "POST"],
+}));
