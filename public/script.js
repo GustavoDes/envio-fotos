@@ -49,7 +49,7 @@ document.getElementById("btnVerSenha").addEventListener("click", () => {
 // Subunidades
 // ---------------------------------------------------------------------------
 const estrutura = {
-    "Ramo Lobinho":   ["Alcatéia Seeonee", "Alcatéia Abangani"],
+    "Ramo Lobinho":   ["Alcateia Seeonee", "Alcateia Abangani"],
     "Ramo Escoteiro": ["Tropa 14 bis", "Tropa Senta a Pua", "Tropa Sputnik"],
     "Ramo Sênior":    [],
     "Ramo Pioneiro":  [],
