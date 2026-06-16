@@ -3,10 +3,11 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const { google } = require("googleapis");
+const { criarCliente } = require("./auth");
 
 const uploadRoutes = require("./routes/upload");
 
-const app = express();  // declarado ANTES de ser usado
+const app = express();
 
 app.use(cors({
     origin: [
@@ -25,30 +26,26 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Rota de callback OAuth — usada apenas uma vez para gerar o token
 app.get("/oauth2callback", async (req, res) => {
     try {
-        const credentials = JSON.parse(fs.readFileSync("oauth-client.json"));
-        const { client_secret, client_id, redirect_uris } = credentials.web;
-
-        const oAuth2Client = new google.auth.OAuth2(
-            client_id,
-            client_secret,
-            redirect_uris[0]
-        );
-
+        const oAuth2Client = criarCliente();
         const code = req.query.code;
         const { tokens } = await oAuth2Client.getToken(code);
 
-        fs.writeFileSync("token.json", JSON.stringify(tokens, null, 2));
-
-        res.send("Autenticação concluída. Pode fechar esta janela.");
+        res.send(`
+            <h2>Autenticação concluída!</h2>
+            <p>Copie o valor abaixo e salve como variável de ambiente <strong>GOOGLE_TOKEN</strong> no Render:</p>
+            <textarea rows="10" cols="80" onclick="this.select()">${JSON.stringify(tokens)}</textarea>
+            <p>Depois faça um novo deploy no Render.</p>
+        `);
     } catch (erro) {
         console.error(erro);
         res.status(500).send(erro.message);
     }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
