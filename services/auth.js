@@ -1,9 +1,12 @@
 const { google } = require("googleapis");
 
 function criarCliente() {
-    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-    const { client_secret, client_id, redirect_uris } = credentials.web;
-    return new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    const oAuth2Client = new google.auth.OAuth2(
+        process.env.GOOGLE_CLIENT_ID,
+        process.env.GOOGLE_CLIENT_SECRET,
+        process.env.GOOGLE_REDIRECT_URI
+    );
+    return oAuth2Client;
 }
 
 async function getAuthenticatedClient() {
@@ -13,7 +16,7 @@ async function getAuthenticatedClient() {
         const authUrl = oAuth2Client.generateAuthUrl({
             access_type: "offline",
             scope: ["https://www.googleapis.com/auth/drive"],
-            prompt: "consent" // garante que sempre retorna refresh_token
+            prompt: "consent"
         });
         console.log("\n=== AUTORIZAÇÃO NECESSÁRIA ===");
         console.log("Acesse esta URL para autorizar o app:");
@@ -25,7 +28,6 @@ async function getAuthenticatedClient() {
     const token = JSON.parse(process.env.GOOGLE_TOKEN);
     oAuth2Client.setCredentials(token);
 
-    // Atualiza o token automaticamente quando expirar
     oAuth2Client.on("tokens", (novosTokens) => {
         const tokenAtual = JSON.parse(process.env.GOOGLE_TOKEN);
         const tokenAtualizado = { ...tokenAtual, ...novosTokens };
