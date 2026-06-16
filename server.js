@@ -1,9 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
-const { google } = require("googleapis");
-const { criarCliente } = require("./auth");
+const { criarCliente } = require("./services/auth");
 
 const uploadRoutes = require("./routes/upload");
 
